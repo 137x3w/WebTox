@@ -103,17 +103,33 @@ class ChatContainer extends React.Component {
 			case "MSG_CLICK":
 			this.onMsgClick(e.payload.uid);
 			break;
+
+			case "DRAWER":
+			this.props.onEvent(e);
+			break;
+
 			default: break;
 		}
 	}
 
 	render() {
+
+		/* Work with uid */
+
 		return (
-			<Chat {...this.state} />
-		);
+			<Chat {...this.state} />	
+		)
 	}
 }
 
-ChatContainer.propTypes = {}
+ChatContainer.propTypes = {
+	uid: PropTypes.string.isRequired,
+	onEvent: PropTypes.func.isRequired,
+}
+
+ChatContainer.defaultProps = {
+	uid: null,
+	onEvent: (e) => {},
+}
 
 export default ChatContainer;

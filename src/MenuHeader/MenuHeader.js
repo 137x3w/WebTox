@@ -26,16 +26,15 @@ const MenuHeader = (props) => {
   const { 
     classes,
     userName,
-    title
+    title,
+    onEvent
   } = props;
 
   return (
     <div>
       
         <CardContent>
-          <Avatar
-            size={"big"}
-          />
+          <Avatar/>
           <Typography 
             className={classes.userName}
             variant="body2" 
@@ -57,11 +56,13 @@ const MenuHeader = (props) => {
 
 MenuHeader.propTypes = {
   classes: PropTypes.object.isRequired,
+  onEvent: PropTypes.func.isRequired,
 };
 
 MenuHeader.defaultProps = {
   userName: "UserUserUserUserUser",
   title: "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle",
+  onEvent: (e) => {},
 }
 
 export default withStyles(styles, { withTheme: true })(MenuHeader);

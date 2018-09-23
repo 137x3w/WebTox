@@ -39,10 +39,7 @@ const ChatMessage = (props) => {
 					spacing={0} 
 					className={classes.grid}
 				>
-					<Grid 
-						xs={9} sm={10} md={11}
-						item
-					>
+					<Grid xs={9} sm={10} md={11} item>
 						<Typography
 							variant="subheading"
 							noWrap

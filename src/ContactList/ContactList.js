@@ -2,70 +2,58 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import CardHeader from '@material-ui/core/CardHeader';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ReplyIcon from '@material-ui/icons/Reply';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ForwardIcon from '@material-ui/icons/Forward';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
-import Avatar from '../Avatar/Avatar';
+import ContactContainer from '../Contact/ContactContainer';
 
 const styles = theme => ({
-	inheritWidth: {
-		width: "inherit",
+	list: {
+		padding: 0,
 	},
 
-	zeroMinWidth: {
-		minWidth: 0,
-	},
-
-	cardHeaderRoot: {
-		flexGrow: 1,
-		paddingLeft: theme.spacing.unit,
-		paddingRight: theme.spacing.unit,
-	},
+	listRoot: {
+		
+	}
 });
 
 const ContactList = (props) => {
 	const {
-		active,
-		avatar,
-		title,
-		subheader,
-		menuAnchor,
+		contacts,
 		onEvent,
 		classes
 	} = props;
 
 	return (
 		<React.Fragment>
-
+			<List 
+				className={classes.list}
+				classes={{
+					root: classes.listRoot
+				}}
+			>
+				{
+					Object.keys(contacts).map((key) => (
+						<ContactContainer 
+							{...contacts[key]} 
+							onEvent={onEvent} 
+						/>
+					))
+				}
+			</List>
 		</React.Fragment>
 	);
 }
 
 ContactList.propTypes = {
-	avatar: PropTypes.object,
-	active: PropTypes.bool.isRequired,
+	contacts: PropTypes.object.isRequired,
 	onEvent: PropTypes.func.isRequired,
-	title: PropTypes.string.isRequired,
-	subheader: PropTypes.string.isRequired,
 	classes: PropTypes.object.isRequired,
 };
 
 ContactList.defaultProps = {
-	avatar: null,
-	active: false,
+	contacts: [],
 	onEvent: (e) => {},
-	title: "Default",
-	subheader: "Default",
 }
 
 export default withStyles(styles, { withTheme: true })(ContactList);

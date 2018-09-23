@@ -12,8 +12,8 @@ const styles = theme => ({
 		'&:after': {
 			borderRadius: '50%',
 			content: "''",
-			width: 10,
-			height: 10,
+			width: 8,
+			height: 8,
 			position: 'absolute',
 			bottom: 0,
 			right: 0,
@@ -46,6 +46,12 @@ const styles = theme => ({
 		width: 40,
 		height: 40,
 	},
+
+	mediumAvatar: {
+		width: 48,
+		height: 48,
+	},
+
 	bigAvatar: {
 		width: 50,
 		height: 50,
@@ -54,11 +60,11 @@ const styles = theme => ({
 
 const Avatar = (props) => {
 	const {
-		classes,
 		status,
 		src,
 		char,
-		size
+		size,
+		classes
 	} = props;
 
 	return (

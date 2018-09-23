@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import _Drawer from '@material-ui/core/Drawer';
 
-import DrawerContainer from './DrawerContainer';
-
 const anchor = "bottom";
 
 const styles = theme => ({});
@@ -13,6 +11,7 @@ const styles = theme => ({});
 const Drawer = (props) => {
 	const {
 		open,
+		onEvent,
 		children
 	} = props;
 
@@ -22,9 +21,11 @@ const Drawer = (props) => {
 				variant="temporary"
 				anchor={anchor}
 				ModalProps={{
-					keepMounted: true, // Better open performance on mobile.
+					/* Better open performance on mobile. */
+					keepMounted: true,
 				}}
 				open={open}
+				onClose={(e) => onEvent({action: "DRAWER_CLOSE"})}
 			>
 				{children}
 			</_Drawer>
@@ -33,7 +34,14 @@ const Drawer = (props) => {
 };
 
 Drawer.propTypes = {
+	open: PropTypes.bool.isRequired,
+	onEvent: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
+};
+
+Drawer.defaultProps = {
+	open: false,
+	onEvent: (e) => {},
 };
 
 export default withStyles(styles, { withTheme: true })(Drawer);

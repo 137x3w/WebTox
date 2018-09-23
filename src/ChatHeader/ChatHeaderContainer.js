@@ -36,8 +36,8 @@ class ChatHeaderContainer extends React.Component {
 
 	onEvent(e) {
 		switch(e.action) {
-			case "BACK":
-			console.log("Back");
+			case "DRAWER":
+			console.log("Drawer");
 			this.props.onEvent(e);
 			break;
 			case "DELETE":
